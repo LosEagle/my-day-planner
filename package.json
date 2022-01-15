@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/LosEagle/my-day-planner/issues"
   },
-  "homepage": "https://github.com/LosEagle/my-day-planner#readme"
+  "homepage": "https://github.com/LosEagle/my-day-planner#readme",
+  "devDependencies": {
+    "electron": "^16.0.7"
+  }
 }
