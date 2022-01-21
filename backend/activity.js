@@ -1,11 +1,7 @@
-const fs = require('fs');
-const util = require('util');
-
-const readFile = util.promisify(fs.readFile);
-const writeFile = util.promisify(fs.writeFile);
+const { file } = require('./file')
 
 const getAll = async () => {
-  const activities = await readFile('../shared/store/activities.json', 'utf8');
+  const activities = await file.readFile('../shared/store/activities.json');
 
   return JSON.parse(activities);
 }
@@ -13,11 +9,11 @@ const getAll = async () => {
 const setAll = async (activities) => {
   const formattedActivities = JSON.stringify(activities, null, 2);
 
-  await writeFile('../shared/store/activities.json', formattedActivities)
+  await file.writeFile('../shared/store/activities.json', formattedActivities)
 }
 
 const clearAll = async() => {
-  await writeFile('../shared/store/activities.json', '[]')
+  await file.writeFile('../shared/store/activities.json', '[]')
 }
 
 const add = async (name, color, startTime, duration, notify) => {
