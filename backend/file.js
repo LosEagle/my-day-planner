@@ -8,7 +8,7 @@ const readFile = async (path) => await readFilePromise(path, 'utf8');
 const writeFile = writeFilePromise;
 
 module.exports = {
-  file: {
+  File: {
     readFile,
     writeFile
   },

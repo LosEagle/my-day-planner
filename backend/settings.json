@@ -1,0 +1,6 @@
+{
+  "paths": {
+    "activities": "../shared/store/activities.json",
+    "bookmarks": "../shared/store/bookmarks.json"
+  }
+}

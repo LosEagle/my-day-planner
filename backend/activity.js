@@ -1,32 +1,13 @@
-const { file } = require('./file')
+const { Store } = require('./store');
+const { paths } = require('settings.json');
 
-const getAll = async () => {
-  const activities = await file.readFile('../shared/store/activities.json');
+const getAll = async () => await Store.getAll(paths.activities);
 
-  return JSON.parse(activities);
-}
+const setAll = async (activities) => await Store.setAll(paths.activities, activities);
 
-const setAll = async (activities) => {
-  const formattedActivities = JSON.stringify(activities, null, 2);
+const clearAll = async () => await Store.clearAll(paths.activities);
 
-  await file.writeFile('../shared/store/activities.json', formattedActivities)
-}
+const add = async (name, color, startTime, duration, notify) =>
+  await Store.add(paths.activities, name, color, startTime, duration, notify);
 
-const clearAll = async() => {
-  await file.writeFile('../shared/store/activities.json', '[]')
-}
-
-const add = async (name, color, startTime, duration, notify) => {
-  const activities = await getAll();
-
-  activities.push({ name,color, startTime, duration, notify });
-
-  await setAll(activities)
-}
-
-const remove = async (startTime) => {
-  const activites = await getAll();
-  const filteredActivities = activites.filter((activity) => activity.startTime !== startTime);
-
-  await setAll(filteredActivities);
-}
+const remove = async (startTime) => await Store.remove(paths.activities, startTime);
