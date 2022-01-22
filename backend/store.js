@@ -1,7 +1,7 @@
-const { file } = require('./file')
+const { File } = require('./file')
 
 const getAll = async (path) => {
-  const activities = await file.readFile(path);
+  const activities = await File.readFile(path);
 
   return JSON.parse(activities);
 }
@@ -9,17 +9,17 @@ const getAll = async (path) => {
 const setAll = async (path, activities) => {
   const formattedActivities = JSON.stringify(activities, null, 2);
 
-  await file.writeFile(path, formattedActivities)
+  await File.writeFile(path, formattedActivities)
 }
 
 const clearAll = async (path) => {
-  await file.writeFile(path, '[]')
+  await File.writeFile(path, '[]')
 }
 
 const add = async (path, name, color, startTime, duration, notify) => {
   const activities = await getAll(path);
 
-  activities.push({ name,color, startTime, duration, notify });
+  activities.push({ name, color, startTime, duration, notify });
 
   await setAll(path, activities);
 }
